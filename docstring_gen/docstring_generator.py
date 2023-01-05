@@ -50,6 +50,22 @@ def _inject_docstring_to_source(
     return "\n".join(lines)
 
 # %% ../nbs/Docstring_Generator.ipynb 8
+def _get_code_from_source(source: str, start_line_no: int, end_line_no: int) -> str:
+    """Get a block of lines from a given source string.
+
+    Args:
+        source: The source string.
+        start_line_no: The line number of the start of the block of lines.
+        end_line_no: The line number of the end of the block of lines.
+
+    Returns:
+        The extracted block of lines from the source
+    """
+    source_lines = source.split("\n")
+    extracted_lines = source_lines[start_line_no - 1 : end_line_no]
+    return "\n".join(extracted_lines)
+
+# %% ../nbs/Docstring_Generator.ipynb 10
 def _add_docstring(
     source: str,
     node: Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef],
@@ -68,12 +84,17 @@ def _add_docstring(
         A tuple containing the updated source code and the new line number offset
     """
     line_no = node.lineno + line_offset
-    docstring = _generate_docstring_using_codex(ast.unparse(node))
+    end_line_no = node.end_lineno + line_offset
+
+    code = _get_code_from_source(source, line_no, end_line_no)
+    docstring = _generate_docstring_using_codex(code)
+    #     docstring = _generate_docstring_using_codex(ast.unparse(node))
+
     source = _inject_docstring_to_source(source, docstring, line_no, node.col_offset)
     line_offset += len(docstring.split("\n"))
     return source, line_offset
 
-# %% ../nbs/Docstring_Generator.ipynb 10
+# %% ../nbs/Docstring_Generator.ipynb 12
 def _check_and_add_docstrings_to_source(source: str) -> str:
     """Check for missing docstrings in the source code and add them if necessary.
 
@@ -111,7 +132,7 @@ def _check_and_add_docstrings_to_source(source: str) -> str:
 
     return source
 
-# %% ../nbs/Docstring_Generator.ipynb 11
+# %% ../nbs/Docstring_Generator.ipynb 13
 def add_docstring_to_notebook(nb_path: Union[str, Path], version: int = 4):
     """Add docstrings to the source
 
