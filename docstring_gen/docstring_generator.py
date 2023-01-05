@@ -10,7 +10,7 @@ from pathlib import Path
 
 import nbformat
 
-# %% ../nbs/Docstring_Generator.ipynb 8
+# %% ../nbs/Docstring_Generator.ipynb 5
 def _generate_docstring_using_codex(code: str) -> str:
     return """Sample docstring
 
@@ -21,7 +21,7 @@ def _generate_docstring_using_codex(code: str) -> str:
         sample return
 """
 
-# %% ../nbs/Docstring_Generator.ipynb 9
+# %% ../nbs/Docstring_Generator.ipynb 6
 def _inject_docstring_to_source(
     source: str, docstring: str, lineno: int, node_col_offset: int
 ) -> str:
@@ -49,7 +49,7 @@ def _inject_docstring_to_source(
     lines.insert(lineno, f'{" " * indent}"""{indented_docstring}{" " * indent}"""')
     return "\n".join(lines)
 
-# %% ../nbs/Docstring_Generator.ipynb 11
+# %% ../nbs/Docstring_Generator.ipynb 8
 def _add_docstring(
     source: str,
     node: Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef],
@@ -73,7 +73,7 @@ def _add_docstring(
     line_offset += len(docstring.split("\n"))
     return source, line_offset
 
-# %% ../nbs/Docstring_Generator.ipynb 13
+# %% ../nbs/Docstring_Generator.ipynb 10
 def _check_and_add_docstrings_to_source(source: str) -> str:
     """Check for missing docstrings in the source code and add them if necessary.
 
@@ -111,7 +111,7 @@ def _check_and_add_docstrings_to_source(source: str) -> str:
 
     return source
 
-# %% ../nbs/Docstring_Generator.ipynb 14
+# %% ../nbs/Docstring_Generator.ipynb 11
 def add_docstring_to_notebook(nb_path: Union[str, Path], version: int = 4):
     """Add docstrings to the source
 
