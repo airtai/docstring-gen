@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "docstring-gen"
+  site-url: "https://airtai.github.io/docstring-gen"
+  description: "This project generates missing docstrings for classes and methods using OpenAI's Codex model."
+  repo-branch: main
+  repo-url: "https://github.com/airtai/docstring-gen"

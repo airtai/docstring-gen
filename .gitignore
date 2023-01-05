@@ -1,3 +1,34 @@
+token
+
+.sast_bandit
+.sast_semgrep
+.semgrepignore
+.local_install
+.local_reinstall
+.secret.baseline
+
+# nbs related
+nbs/.last_checked
+CHANGELOG.bak
+
+# Docs related
+mkdocs/docs/
+mkdocs/site/
+
+_publish.yml
+/_quarto.yml
+_proc/
+tests/settings.ini
+idx/
+.install
+conda/
+_site/
+_docs/
+test_settings.ini
+
+# Mac os related files
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +158,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# nbdev_mkdocs
+mkdocs/docs/
+mkdocs/site/
+
+
+
+# nbdev_mkdocs
+mkdocs/docs/
+mkdocs/site/
