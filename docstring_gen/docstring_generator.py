@@ -66,6 +66,33 @@ def _get_code_from_source(source: str, start_line_no: int, end_line_no: int) -> 
     return "\n".join(extracted_lines)
 
 # %% ../nbs/Docstring_Generator.ipynb 10
+def _calculate_end_lineno(source: str, start_line_no: int) -> str:
+    """Calculate the end line number of a function in a Python source code.
+
+    Args:
+        source: The source code string.
+        start_line_no: The line number of the start of the function.
+
+    Returns:
+        The end line number of the function.
+    """
+    lines = source.split("\n")[start_line_no - 1 :]
+    first_indent = len(lines[0]) - len(lines[0].lstrip())
+    end_line_in_source = 0
+
+    for i, line in enumerate(lines[1:]):
+        if len(line) - len(line.lstrip()) == first_indent and line.strip() != "":
+            end_line_in_source = i
+            break
+
+    ret_val = (
+        len(source.split("\n"))
+        if end_line_in_source == 0
+        else end_line_in_source + start_line_no
+    )
+    return ret_val - 1
+
+# %% ../nbs/Docstring_Generator.ipynb 12
 def _add_docstring(
     source: str,
     node: Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef],
@@ -84,17 +111,20 @@ def _add_docstring(
         A tuple containing the updated source code and the new line number offset
     """
     line_no = node.lineno + line_offset
-    end_line_no = node.end_lineno + line_offset
+
+    if hasattr(node, "end_lineno") and node.end_lineno is not None:
+        end_line_no = node.end_lineno + line_offset
+    else:
+        end_line_no = _calculate_end_lineno(source, line_no)
 
     code = _get_code_from_source(source, line_no, end_line_no)
     docstring = _generate_docstring_using_codex(code)
-    #     docstring = _generate_docstring_using_codex(ast.unparse(node))
 
     source = _inject_docstring_to_source(source, docstring, line_no, node.col_offset)
     line_offset += len(docstring.split("\n"))
     return source, line_offset
 
-# %% ../nbs/Docstring_Generator.ipynb 12
+# %% ../nbs/Docstring_Generator.ipynb 14
 def _check_and_add_docstrings_to_source(source: str) -> str:
     """Check for missing docstrings in the source code and add them if necessary.
 
@@ -132,7 +162,7 @@ def _check_and_add_docstrings_to_source(source: str) -> str:
 
     return source
 
-# %% ../nbs/Docstring_Generator.ipynb 13
+# %% ../nbs/Docstring_Generator.ipynb 15
 def add_docstring_to_notebook(nb_path: Union[str, Path], version: int = 4):
     """Add docstrings to the source
 
