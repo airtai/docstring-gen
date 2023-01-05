@@ -66,7 +66,7 @@ def _get_code_from_source(source: str, start_line_no: int, end_line_no: int) -> 
     return "\n".join(extracted_lines)
 
 # %% ../nbs/Docstring_Generator.ipynb 10
-def _calculate_end_lineno(source: str, start_line_no: int) -> str:
+def _calculate_end_lineno(source: str, start_line_no: int) -> int:
     """Calculate the end line number of a function in a Python source code.
 
     Args:
