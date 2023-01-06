@@ -129,8 +129,7 @@ def _get_start_line_for_class_or_func(source: str, lineno: int) -> int:
         return lineno
 
     original_lineno = lineno
-    total_lines = source.split("\n")[lineno - 1 :]
-
+    total_lines = source.split("\n")
     for i in total_lines:
         lineno += 1
         if lineno > len(total_lines):
@@ -139,7 +138,7 @@ def _get_start_line_for_class_or_func(source: str, lineno: int) -> int:
             return lineno
     return original_lineno
 
-# %% ../nbs/Docstring_Generator.ipynb 14
+# %% ../nbs/Docstring_Generator.ipynb 15
 def _add_docstring(
     source: str,
     node: Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef],
@@ -175,7 +174,7 @@ def _add_docstring(
     line_offset += len(docstring.split("\n"))
     return source, line_offset
 
-# %% ../nbs/Docstring_Generator.ipynb 16
+# %% ../nbs/Docstring_Generator.ipynb 17
 def _check_and_add_docstrings_to_source(source: str) -> str:
     """Check for missing docstrings in the source code and add them if necessary.
 
@@ -199,7 +198,6 @@ def _check_and_add_docstrings_to_source(source: str) -> str:
         source, line_offset = _add_docstring(source, node, line_offset)
         if not isinstance(node, ast.ClassDef):
             continue
-
         # Is a class and we need to check the functions inside
         # 29 - 36 make it as a recursive function
         for f in node.body:
@@ -213,7 +211,7 @@ def _check_and_add_docstrings_to_source(source: str) -> str:
 
     return source
 
-# %% ../nbs/Docstring_Generator.ipynb 17
+# %% ../nbs/Docstring_Generator.ipynb 19
 def add_docstring_to_notebook(nb_path: Union[str, Path], version: int = 4):
     """Add docstrings to the source
 
