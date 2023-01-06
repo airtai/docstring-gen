@@ -161,7 +161,7 @@ def _add_docstring(
 
     # Fix for ast's node.lineno giving line number of decorator
     # instead of function/class definition in Python 3.7
-    lino_no = _get_start_line_for_class_or_func(source, line_no)
+    line_no = _get_start_line_for_class_or_func(source, line_no)
 
     if hasattr(node, "end_lineno") and node.end_lineno is not None:
         end_line_no = node.end_lineno + line_offset
