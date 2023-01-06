@@ -1,0 +1,42 @@
+name: CI
+on:  [workflow_dispatch, pull_request, push]
+
+jobs:
+  static_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: airtai/workflows/nbdev-mkdocs-static-check@main
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:  [ubuntu, macos]
+        version: ["3.7", "3.8", "3.9", "3.10"]
+    runs-on: ${{ matrix.os }}-latest
+
+    steps:
+      - name: Install quarto
+        run: |
+          if [ ${{ matrix.os }} == 'ubuntu' ]; then
+            wget -q https://www.quarto.org/download/latest/quarto-linux-amd64.deb
+            sudo dpkg -i quarto-linux-amd64.deb
+          else
+            wget -q https://www.quarto.org/download/latest/quarto-macos.pkg
+            sudo installer -pkg quarto-macos.pkg -target /
+          fi
+      - uses: fastai/workflows/nbdev-ci@master
+        with:
+          version: ${{ matrix.version }}
+      - name: test build docs
+        run: |
+          test -f setup.py && pip install -e ".[dev]"
+          nbdev_mkdocs docs
+          if [ -f "mkdocs/site/index.html" ]; then
+            echo "docs built successfully."
+          else
+            echo "index page not found in rendered docs."
+            ls -la
+            ls -la mkdocs/site/
+            exit 1
+          fi
+
