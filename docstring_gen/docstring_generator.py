@@ -195,9 +195,9 @@ def _inject_docstring_to_source(
 # %% ../nbs/Docstring_Generator.ipynb 17
 PROMPT_TEMPLATE = '''
 # Python 3.7
- 
+
 {source}
- 
+
 {prompt}
 """
 '''
@@ -454,7 +454,7 @@ def add_docstring_to_source(
     presence_penalty: float = 0.0,
     stop: List[str] = ["#", '"""'],
     prompt: Optional[str] = None,
-):
+) -> None:
     """Adds a docstring to the source code.
 
     This function adds a docstring to the source code.

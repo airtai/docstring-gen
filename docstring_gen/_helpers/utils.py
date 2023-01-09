@@ -40,7 +40,9 @@ def retry_with_exponential_backoff(
                             f"Maximum number of retries ({max_retries}) exceeded."
                         )
                     delay = min(
-                        delay * exponential_base * (1 + jitter * random.random()),
+                        delay
+                        * exponential_base
+                        * (1 + jitter * random.random()),  # nosec
                         max_wait,
                     )
                     typer.secho(
