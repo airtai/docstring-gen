@@ -1,6 +1,3 @@
-# %% auto 0
-__all__ = ['set_cwd', 'get_value_from_config', 'is_local_path', 'add_counter_suffix_to_filename']
-
 # %% ../../nbs/Utils.ipynb 1
 import os
 from typing import *

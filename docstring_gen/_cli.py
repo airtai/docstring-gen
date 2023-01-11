@@ -17,7 +17,7 @@ _app = typer.Typer()
 
 
 @_app.command(
-    help="This command reads a Jupyter notebook or Python file, or a directory containing these files, and adds docstrings to classes and methods that do not have them. It can be used to add missing docstrings to your codebase.",
+    help="This command reads a Jupyter notebook or Python file, or a directory containing these files, and adds docstrings to classes and methods that do not have them.",
 )
 def gen(
     path: str = typer.Argument(
