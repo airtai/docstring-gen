@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['AUTO_GEN_PERFIX', 'AUTO_GEN_BODY', 'AUTO_GEN_SUFFIX', 'AUTO_GEN_TXT', 'DOCSTRING_RETRY_ATTEMPTS', 'PROMPT_TEMPLATE',
-           'DEFAULT_PROMPT', 'retry_with_exponential_backoff', 'completions_with_backoff', 'add_docstring_to_source']
+           'DEFAULT_PROMPT', 'add_docstring_to_source']
 
 # %% ../nbs/Docstring_Generator.ipynb 2
 import time
@@ -22,19 +22,15 @@ import typer
 
 # %% ../nbs/Docstring_Generator.ipynb 4
 def _get_code_from_source(source: str, start_line_no: int, end_line_no: int) -> str:
-    """This function takes in the source code of a python file, the start line number and the end line number
-        and returns the code snippet from the source code.
-
+    """This function returns the code from the source file between the start and end line numbers.
         Args:
-            source (str): The source code of the python file
-            start_line_no (int): The start line number
-            end_line_no (int): The end line number
-
+            source: The source code of the file
+            start_line_no: The start line number
+            end_line_no: The end line number
         Returns:
-            str: The code snippet from the source code
-
+            The code between the start and end line numbers
         Raises:
-            ValueError: If the start line number is greater than the end line number
+            IndexError: If the start or end line numbers are out of range
 
 
     !!! note
@@ -48,17 +44,17 @@ def _get_code_from_source(source: str, start_line_no: int, end_line_no: int) -> 
 
 # %% ../nbs/Docstring_Generator.ipynb 6
 def _calculate_end_lineno(source: str, start_line_no: int) -> int:
-    """Calculate the end line number of a function.
+    """Calculate end line number of a function
 
     Args:
-        source: The source code of the file.
-        start_line_no: The line number of the function definition.
+        source: The source code of the file
+        start_line_no: The line number of the function
 
     Returns:
-        The line number of the end of the function.
+        The line number of the end of the function
 
     Raises:
-        ValueError: If the function definition is not found.
+        None
 
 
     !!! note
@@ -84,10 +80,11 @@ def _calculate_end_lineno(source: str, start_line_no: int) -> int:
 
 # %% ../nbs/Docstring_Generator.ipynb 8
 def _line_has_decorator(source: str, lineno: int) -> bool:
-    """This function checks if a line has a decorator.
+    """_line_has_decorator(source, lineno)
+        Checks if the line has a decorator
         Args:
             source: The source code of the file
-            lineno: The line number of the line to be checked
+            lineno: The line number to check
         Returns:
             True if the line has a decorator, False otherwise
         Raises:
@@ -104,7 +101,17 @@ def _line_has_decorator(source: str, lineno: int) -> bool:
 
 
 def _get_start_line_for_class_or_func(source: str, lineno: int) -> int:
-    """
+    """Function to get the start line for a class or function
+
+    Args:
+        source: The source code of the file
+        lineno: The line number of the class or function
+
+    Returns:
+        The start line for the class or function
+
+    Raises:
+        None
 
 
     !!! note
@@ -127,19 +134,17 @@ def _get_start_line_for_class_or_func(source: str, lineno: int) -> int:
 
 # %% ../nbs/Docstring_Generator.ipynb 11
 def _get_lineno_to_append_docstring(source: str, lineno: int) -> int:
-    """This function takes in a source code and a line number and returns the line number where the docstring should be appended.
-        It does this by checking if the source code is tokenized. If it is not, it raises a token error.
-        If it is, it returns the line number where the docstring should be appended.
+    """This function takes in a string of source code and a line number and returns the line number where the docstring should be appended.
 
-        Args:
-            source: The source code of the function
-            lineno: The line number of the function
+    Args:
+        source (str): The source code of the function.
+        lineno (int): The line number of the function definition.
 
-        Returns:
-            The line number where the docstring should be appended
+    Returns:
+        int: The line number where the docstring should be appended.
 
-        Raises:
-            TokenError: If the source code is not tokenized
+    Raises:
+        tokenize.TokenError: If the source code is not tokenized.
 
 
     !!! note
@@ -187,20 +192,20 @@ def _inject_docstring_to_source(
     node_col_offset: int,
     include_auto_gen_txt: bool,
 ) -> str:
-    """Injects a docstring into a source file.
+    """Injects a docstring into the source code of a python file.
 
     Args:
-        source: The source code to inject the docstring into.
+        source: The source code of the python file.
         docstring: The docstring to inject.
-        lineno: The line number to inject the docstring at.
-        node_col_offset: The column offset of the node to inject the docstring at.
-        include_auto_gen_txt: Whether to include the auto-generated text.
+        lineno: The line number in the source code to inject the docstring.
+        node_col_offset: The column offset of the node in the source code.
+        include_auto_gen_txt: Whether to include the auto generated text in the docstring.
 
     Returns:
         The source code with the docstring injected.
 
     Raises:
-        ValueError: If the source code is invalid.
+        ValueError: If the line number is invalid.
 
 
     !!! note
@@ -231,14 +236,14 @@ def _inject_docstring_to_source(
 # Reference: https://github.com/openai/openai-cookbook/blob/main/examples/How_to_handle_rate_limits.ipynb
 
 
-def retry_with_exponential_backoff(
+def _retry_with_exponential_backoff(
     initial_delay: float = 1,
     exponential_base: float = 2,
     jitter: bool = True,
     max_retries: int = 10,
     max_wait: float = 60,
     errors: tuple = (openai.error.RateLimitError, openai.error.ServiceUnavailableError),
-):
+) -> Callable:
     """Retry a function with exponential backoff."""
 
     def decorator(func):
@@ -276,12 +281,58 @@ def retry_with_exponential_backoff(
     return decorator
 
 
-@retry_with_exponential_backoff()
-def completions_with_backoff(**kwargs):
+@_retry_with_exponential_backoff()
+def _completions_with_backoff(**kwargs):
+    """This function is used to create a completion object.
+
+    Args:
+        engine: The engine to use for the completion.
+        prompt: The prompt to complete.
+        max_tokens: The maximum number of tokens to return.
+        temperature: The temperature to use for sampling.
+        top_p: The top-p filtering value to use for nucleus sampling.
+        n: The number of completions to sample.
+        stream: If set to True, will return a generator that can be iterated over to retrieve completions as they are generated.
+        logprobs: If set to True, will return the log probabilities of the completions.
+        stop: If set to True, will stop the completion early once the end token is generated.
+        frequency_penalty: The frequency penalty to use.
+        presence_penalty: The presence penalty to use.
+        frequency_reward: The frequency reward to use.
+        presence_reward: The presence reward to use.
+        stop_token: The token at which to stop the completion.
+        temperature_control: The temperature control to use.
+    top_k: The top
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
+    """
     return openai.Completion.create(**kwargs)
 
 # %% ../nbs/Docstring_Generator.ipynb 24
-DOCSTRING_RETRY_ATTEMPTS = 1
+def _get_best_docstring(docstrings: List[str]) -> Optional[str]:
+    """Returns the best docstring from a list of docstrings
+
+    Args:
+        docstrings: List of docstrings
+
+    Returns:
+        The best docstring
+
+    Raises:
+        None
+
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
+    """
+    docstrings = [d for d in docstrings if "Args:" in d]
+    docstrings = [d for d in docstrings if "~~~~" not in d]
+    return docstrings[0] if len(docstrings) > 0 else None
+
+# %% ../nbs/Docstring_Generator.ipynb 27
+DOCSTRING_RETRY_ATTEMPTS = 5
 
 PROMPT_TEMPLATE = '''
 # Python 3.7
@@ -301,94 +352,93 @@ DEFAULT_PROMPT = """
 """
 
 
-def _get_response(**kwargs):
-    """This function takes in a prompt and returns a response.
+def _get_response(**kwargs: Union[int, float, Optional[str], List[str]]) -> Any:
+    """This function gets the response from the OpenAI API.
         Args:
-            prompt: A string that is the prompt for the response.
-            max_tokens: An integer that is the maximum number of tokens to be returned.
-            temperature: A float that is the temperature for the response.
-            top_p: A float that is the top_p for the response.
-            n: An integer that is the number of responses to be returned.
-            stream: A string that is the stream for the response.
-            logprobs: A float that is the logprobs for the response.
-            stop: A string that is the stop for the response.
+            kwargs: A dictionary of parameters to be passed to the API.
         Returns:
-            A string that is the response.
+            A list of responses from the API.
         Raises:
-            openai.error.AuthenticationError: If no API key is provided.
+            openai.error.AuthenticationError: If the API key is not provided.
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     try:
-        response = completions_with_backoff(**kwargs)
+        response = _completions_with_backoff(**kwargs)
     except openai.error.AuthenticationError as e:
         raise openai.error.AuthenticationError(
             "No API key provided. Please set the API key in the environment variable OPENAI_API_KEY=<API-KEY>. You can generate API keys in the OpenAI web interface. See https://onboard.openai.com for details."
         )
-    return response.choices[0].text
+    return response.choices
 
 
-def _generate_docstring_using_codex(source: str, **kwargs) -> str:
-    """Generates a docstring for a given source code using codex.
+def _generate_docstring_using_codex(
+    source: str, **kwargs: Union[int, float, Optional[str], List[str]]
+) -> str:
+    """Generates a docstring for the given source code using the codex API
 
     Args:
-        source (str): The source code for which the docstring is to be generated.
-        **kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        str: The generated docstring.
-
-    Raises:
-        ValueError: If the source code is not a string.
+        source (str): The source code for which the docstring is to be generated
+        prompt (str): The prompt for the docstring. If not specified, the default prompt is used
+        language (str): The language for which the docstring is to be generated. If not specified, python is used
+        indent (int): The indentation level for the docstring. If not specified, 4 spaces are used
+        max_line_length (int): The maximum line length for the docstring. If not specified, 80 is used
+        max_docstring_length (int): The maximum length of the docstring. If not specified, no limit is imposed
+        max_docstring_lines (int): The maximum number of lines in the docstring. If not specified, no limit is imposed
+        max_docstring_words (int): The maximum number of words in the docstring. If not specified, no limit is imposed
+        max_docstring_paras (int): The maximum number of paragraphs in the docstring. If not specified, no limit is imposed
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
-    prompt = DEFAULT_PROMPT if kwargs["prompt"] is None else kwargs["prompt"]
-    prompt = "# " + prompt if not prompt.startswith("#") else prompt
+
+    prompt: str = DEFAULT_PROMPT if kwargs["prompt"] is None else kwargs["prompt"]  # type: ignore
+    prompt = f"# {prompt}" if not prompt.startswith("#") else prompt
     kwargs["prompt"] = PROMPT_TEMPLATE.format(source=source, prompt=prompt)
 
-    ret_val: str = _get_response(**kwargs)
     for i in range(DOCSTRING_RETRY_ATTEMPTS):
-        if "Args:" in ret_val:
-            break
-        ret_val = _get_response(**kwargs)
+        res = _get_response(**kwargs)
+        ret_val = _get_best_docstring([d.text for d in res])
 
-    return ret_val
+        if ret_val is not None:
+            return ret_val
 
-# %% ../nbs/Docstring_Generator.ipynb 28
+    return """!!! note
+    
+    Failed to generate docs"""
+
+# %% ../nbs/Docstring_Generator.ipynb 31
 def _add_docstring(
     source: str,
     node: Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef],
     line_offset: int,
     include_auto_gen_txt: bool,
-    **kwargs,
+    **kwargs: Union[int, float, Optional[str], List[str]],
 ) -> Tuple[str, int]:
     """Adds a docstring to a class or function.
 
     Args:
-        source: The source code of the file.
-        node: The class or function node.
-        line_offset: The line offset of the file.
-        include_auto_gen_txt: Whether to include the auto generated text.
+        source (str): The source code of the file.
+        node (Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef]): The node of the class or function.
+        line_offset (int): The line offset of the source code.
+        include_auto_gen_txt (bool): Whether to include the auto generated text or not.
         **kwargs: Additional keyword arguments.
 
     Returns:
-        A tuple of the source code and the line offset.
-
-    Raises:
-        ValueError: If the source code is not a string.
+        Tuple[str, int]: The source code and the line offset.
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     line_no = node.lineno + line_offset
 
     # Fix for  Python 3.7
@@ -415,49 +465,53 @@ def _add_docstring(
     )
     return source, line_offset
 
-# %% ../nbs/Docstring_Generator.ipynb 30
+# %% ../nbs/Docstring_Generator.ipynb 33
 def _remove_auto_generated_docstring(source: str) -> str:
-    """Removes the auto-generated docstring from the source code.
+    """Removes the auto generated docstring from the source code.
 
     Args:
-        source (str): The source code.
+        source (str): The source code to remove the auto generated docstring from.
 
     Returns:
-        str: The source code with the auto-generated docstring removed.
+        str: The source code with the auto generated docstring removed.
 
     Raises:
-        ValueError: If the source code does not contain the auto-generated docstring.
+        ValueError: If the source code does not contain the auto generated docstring.
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     return re.sub(
         f'"""((?!""").)*?({AUTO_GEN_BODY}).*?"""', "", source, flags=re.DOTALL
     )
 
-# %% ../nbs/Docstring_Generator.ipynb 32
+# %% ../nbs/Docstring_Generator.ipynb 35
 def _check_and_add_docstrings_to_source(
-    source: str, include_auto_gen_txt: bool, **kwargs
+    source: str,
+    include_auto_gen_txt: bool,
+    **kwargs: Union[int, float, Optional[str], List[str]]
 ) -> str:
-    """This function checks if the source code has docstrings for all the functions and classes.
-        If not, it adds the docstrings to the source code.
-        It also removes the auto-generated docstrings.
-
+    """_check_and_add_docstrings_to_source(source: str, include_auto_gen_txt: bool, **kwargs) -> str
+        This function checks if the docstring is present in the source code and if not, adds a docstring to the source code.
+        The docstring is added in the Google Python Docstring format.
         Args:
-            source (str): The source code of the file.
-            include_auto_gen_txt (bool): Whether to include the auto-generated text in the docstring.
-            **kwargs: Any other keyword arguments.
-
+            source: The source code of the file.
+            include_auto_gen_txt: A boolean value which is true if the auto generated text is to be included in the docstring.
+            **kwargs: The keyword arguments.
         Returns:
-            str: The source code with the docstrings added.
+            The source code with the docstring added.
+        Raises:
+            None
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     source = _remove_auto_generated_docstring(source)
     tree = ast.parse(source)
     line_offset = 0
@@ -490,26 +544,25 @@ def _check_and_add_docstrings_to_source(
 
     return source
 
-# %% ../nbs/Docstring_Generator.ipynb 34
+# %% ../nbs/Docstring_Generator.ipynb 37
 def _get_files(nb_path: Path) -> List[Path]:
-    """This function returns a list of files in the given directory.
-        The files returned are either .ipynb or .py files.
-        The files returned do not start with a '.' or '_'
+    """This function returns a list of all the files in the directory and subdirectories of the given path.
 
-        Args:
-            nb_path: The path to the directory to be searched
+    Args:
+        nb_path: A pathlib.Path object representing the path of the directory.
 
-        Returns:
-            A list of files in the given directory
+    Returns:
+        A list of pathlib.Path objects representing the paths of all the files in the directory and subdirectories of the given path.
 
-        Raises:
-            ValueError: If the directory does not contain any Python files or notebooks
+    Raises:
+        ValueError: If the directory does not contain any Python files or notebooks.
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     exts = [".ipynb", ".py"]
     files = [
         f
@@ -526,26 +579,33 @@ def _get_files(nb_path: Path) -> List[Path]:
 
     return files
 
-# %% ../nbs/Docstring_Generator.ipynb 37
+# %% ../nbs/Docstring_Generator.ipynb 40
 def _add_docstring_to_nb(
-    file: Path, version: int, include_auto_gen_txt: bool, **kwargs
-):
-    """Adds docstrings to all functions in a notebook.
-        Args:
-            file: Path to the notebook file.
-            version: Version of the notebook file.
-            include_auto_gen_txt: Whether to include the text "Auto-generated by nb_docstrings" in the docstring.
-            kwargs: Additional keyword arguments to be passed to the function _check_and_add_docstrings_to_source.
-        Returns:
-            None
-        Raises:
-            None
+    file: Path,
+    version: int,
+    include_auto_gen_txt: bool,
+    **kwargs: Union[int, float, Optional[str], List[str]]
+) -> None:
+    """This function adds docstrings to the source code in a jupyter notebook.
+
+    Args:
+        file: Path to the jupyter notebook.
+        version: Version of the jupyter notebook.
+        include_auto_gen_txt: Whether to include the text "Auto-generated by NB2PY" in the docstring.
+        **kwargs: Keyword arguments to be passed to the function _check_and_add_docstrings_to_source.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: If the file is not a jupyter notebook.
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     _f = nbformat.read(file, as_version=version)
     for cell in _f.cells:
         if cell.cell_type == "code":
@@ -555,22 +615,30 @@ def _add_docstring_to_nb(
     nbformat.write(_f, file)
 
 
-def _add_docstring_to_py(file: Path, include_auto_gen_txt: bool, **kwargs):
-    """Adds docstrings to all functions in a python file.
-        Args:
-            file: Path to the python file
-            include_auto_gen_txt: If True, include the text "This function was auto-generated from the original Numba source code.
-            **kwargs: Additional keyword arguments to pass to the docstring parser
-        Returns:
-            None
-        Raises:
-            ValueError: If the file is not a python file
+def _add_docstring_to_py(
+    file: Path,
+    include_auto_gen_txt: bool,
+    **kwargs: Union[int, float, Optional[str], List[str]]
+) -> None:
+    """Adds a docstring to a python file.
+
+    Args:
+        file: Path to the python file.
+        include_auto_gen_txt: Whether to include the auto-generated text in the docstring.
+        kwargs: Keyword arguments to be passed to the docstring generator.
+
+    Returns:
+        None
+
+    Raises:
+        None
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     with file.open("r") as f:
         source = f.read()
     source = _check_and_add_docstrings_to_source(source, include_auto_gen_txt, **kwargs)
@@ -583,37 +651,37 @@ def add_docstring_to_source(
     version: int = 4,
     include_auto_gen_txt: bool = True,
     model: str = "code-davinci-002",
-    temperature: int = 0,
+    temperature: float = 0.2,
     max_tokens: int = 250,
     top_p: float = 1.0,
     frequency_penalty: float = 0.0,
     presence_penalty: float = 0.0,
     stop: List[str] = ["#", '"""'],
+    n: int = 3,
     prompt: Optional[str] = None,
 ) -> None:
-    """Adds a docstring to the source code.
+    """Adds a docstring to a python file or Jupyter notebook.
 
     Args:
-        path: The path to the source code file or directory.
-        version: The version of the docstring format to use.
-        include_auto_gen_txt: Whether to include the text "Auto-generated by Code-Davinci" in the docstring.
-        model: The model to use for generating the docstring.
-        temperature: The temperature to use for generating the docstring.
-        max_tokens: The maximum number of tokens to use for generating the docstring.
-        top_p: The top_p to use for generating the docstring.
-        frequency_penalty: The frequency_penalty to use for generating the docstring.
-        presence_penalty: The presence_penalty to use for generating the docstring.
-        stop: The stop tokens to use for generating the docstring.
-        prompt: The prompt to use for generating the docstring.
-
-    Raises:
-        ValueError: If the path is not a file or directory.
+        path: Path to the file or directory.
+        version: Version of the docstring format.
+        include_auto_gen_txt: Whether to include the auto-generated text.
+        model: GPT-2 model to use.
+        temperature: Temperature for the GPT-2 model.
+        max_tokens: Maximum number of tokens to generate.
+        top_p: Nucleus sampling parameter.
+        frequency_penalty: Frequency penalty parameter.
+        presence_penalty: Presence penalty parameter.
+        stop: List of tokens that will stop the generation.
+        n: Number of docstrings to generate.
+        prompt: Prompt for the docstring.
 
 
     !!! note
 
         The above docstring is autogenerated by docstring-gen library (https://github.com/airtai/docstring-gen)
     """
+
     path = Path(path)
     files = _get_files(path) if path.is_dir() else [path]
 
@@ -630,6 +698,7 @@ def add_docstring_to_source(
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
                 stop=stop,
+                n=n,
                 prompt=prompt,
             )
         else:
@@ -643,5 +712,6 @@ def add_docstring_to_source(
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
                 stop=stop,
+                n=n,
                 prompt=prompt,
             )
