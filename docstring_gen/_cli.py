@@ -49,16 +49,6 @@ def gen(
         250, help="The maximum number of tokens to generate in the docstring."
     ),
     top_p: float = typer.Option(1.0, help="The top-p parameter for the GPT-3 model."),
-    frequency_penalty: float = typer.Option(
-        0.0, help="The frequency penalty parameter for the GPT-3 model."
-    ),
-    presence_penalty: float = typer.Option(
-        0.0, help="The presence penalty parameter for the GPT-3 model."
-    ),
-    stop: List[str] = typer.Option(
-        ["#", '"""'],
-        help="A list of strings that, if encountered in the generated docstring, will cause generation to stop.",
-    ),
     n: int = typer.Option(
         3, help="The number of completions to generate for each prompt."
     ),
@@ -74,7 +64,6 @@ def gen(
         temperature: The temperature parameter for the GPT-3 model.
         max_tokens: The maximum number of tokens to generate in the docstring.
         top_p: The top-p parameter for the GPT-3 model.
-    frequency_penalty: The frequency penalty parameter for the GPT
 
     !!! note
 
@@ -91,9 +80,6 @@ def gen(
             temperature=temperature,
             max_tokens=max_tokens,
             top_p=top_p,
-            frequency_penalty=frequency_penalty,
-            presence_penalty=presence_penalty,
-            stop=stop,
             n=n,
         )
     except Exception as e:
