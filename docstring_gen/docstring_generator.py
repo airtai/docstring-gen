@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['AUTO_GEN_PERFIX', 'AUTO_GEN_BODY', 'AUTO_GEN_SUFFIX', 'AUTO_GEN_TXT', 'DEFAULT_PROMPT_TEMPLATE', 'DOCSTRING_ERR',
-           'visit_functions', 'add_docstring_to_source']
+           'add_docstring_to_source']
 
 # %% ../nbs/Docstring_Generator.ipynb 2
 import time
@@ -49,7 +49,7 @@ def _remove_auto_generated_docstring(source: str) -> str:
     )
 
 # %% ../nbs/Docstring_Generator.ipynb 6
-def visit_functions(
+def _visit_functions(
     tree: ast.AST,
     *,
     source: str,
@@ -97,7 +97,7 @@ def visit_functions(
             node_end_lineno = (
                 tree.body[i + 1].lineno - 1 if i < (len(tree.body) - 1) else end_lineno
             )
-            visit_functions(
+            _visit_functions(
                 n,
                 source=source,
                 start_lineno=node_start_lineno,
@@ -134,7 +134,7 @@ def _get_classes_and_functions(
             (start_lineno, tree.body[0].lineno - 1, end_lineno, tree.body[0].col_offset)
         )
 
-    visit_functions(
+    _visit_functions(
         tree,
         source=source,
         callback=callback,
@@ -585,8 +585,7 @@ def add_docstring_to_source(
     top_p: float = 1.0,
     n: int = 3,
 ) -> None:
-
-    """Add docstrings to source code.
+    """Reads a Jupyter notebook or Python file, or a directory containing these files, and adds docstrings to classes and methods that do not have them.
 
     Args:
         path: The path to the Jupyter notebook or Python file, or a directory containing these files.

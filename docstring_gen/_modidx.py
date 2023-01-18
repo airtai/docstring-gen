@@ -33,7 +33,7 @@ d = { 'settings': { 'branch': 'main',
                                                                                                                            'docstring_gen/docstring_generator.py'),
                                                    'docstring_gen.docstring_generator._retry_with_exponential_backoff': ( 'docstring_generator.html#_retry_with_exponential_backoff',
                                                                                                                           'docstring_gen/docstring_generator.py'),
+                                                   'docstring_gen.docstring_generator._visit_functions': ( 'docstring_generator.html#_visit_functions',
+                                                                                                           'docstring_gen/docstring_generator.py'),
                                                    'docstring_gen.docstring_generator.add_docstring_to_source': ( 'docstring_generator.html#add_docstring_to_source',
-                                                                                                                  'docstring_gen/docstring_generator.py'),
-                                                   'docstring_gen.docstring_generator.visit_functions': ( 'docstring_generator.html#visit_functions',
-                                                                                                          'docstring_gen/docstring_generator.py')}}}
+                                                                                                                  'docstring_gen/docstring_generator.py')}}}
