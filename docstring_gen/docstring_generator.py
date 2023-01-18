@@ -375,7 +375,7 @@ def _fix_docstring_indent(
     if include_auto_gen_txt:
         retval = _add_auto_gen_txt(retval)
 
-    retval = '"""' + retval + '"""' + "\n"
+    retval = '"""' + retval + '"""'
     retval = textwrap.indent(retval, prefix=" " * col_offset)
     return retval
 
