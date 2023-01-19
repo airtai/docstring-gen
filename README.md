@@ -36,9 +36,12 @@ quality.
 
 ## Install
 
-**docstring-gen** can be installed by running
-`pip install docstring-gen` from your command line. This package
-requires Python 3.7 or higher to work.
+**docstring-gen** can be installed by running the command below. This
+package requires Python 3.7 or higher to work.
+
+``` shell
+pip install docstring-gen
+```
 
 If the installation was successful, you should now have
 **docstring-gen** installed on your system. To see a full list of
