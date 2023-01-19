@@ -7,7 +7,7 @@
   {% elif page and page.title and not page.is_homepage %}
     {% set title = title ~ " - " ~ page.title | striptags %}
   {% endif %}
-  {% set image_url = config.extra.social_image %}
+  {% set image_url = page.canonical_url ~ "" ~ config.extra.social_image %}
   <meta property="og:type" content="website" />
   <meta property="og:title" content="{{ title }}" />
   <meta property="og:description" content="{{ config.site_description }}" />
