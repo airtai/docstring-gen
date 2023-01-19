@@ -164,8 +164,5 @@ dmypy.json
 mkdocs/docs/
 mkdocs/site/
 
+run_jupyter.sh
 
-
-# nbdev_mkdocs
-mkdocs/docs/
-mkdocs/site/
