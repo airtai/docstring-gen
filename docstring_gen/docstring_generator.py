@@ -554,7 +554,7 @@ def _add_docstring_to_nb(
     nbformat.write(_f, file)
 
     if file_modified or recreate_auto_gen_docs:
-        typer.secho(f"Successfully added docstrings to {file}", fg=typer.colors.CYAN)
+        typer.echo(f"Successfully added docstrings to {file}")
 
 
 def _add_docstring_to_py(
@@ -597,7 +597,7 @@ def _add_docstring_to_py(
         file_modified = original_src != updated_src
 
     if file_modified or recreate_auto_gen_docs:
-        typer.secho(f"Successfully added docstrings to {file}", fg=typer.colors.CYAN)
+        typer.echo(f"Successfully added docstrings to {file}")
 
 
 def add_docstring_to_source(
