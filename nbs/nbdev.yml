@@ -4,6 +4,6 @@ project:
 website:
   title: "docstring-gen"
   site-url: "https://airtai.github.io/docstring-gen"
-  description: "Generate missing docstrings for classes and methods using OpenAI's Codex model."
+  description: "Generate docstrings using OpenAI's Codex model."
   repo-branch: main
   repo-url: "https://github.com/airtai/docstring-gen"
