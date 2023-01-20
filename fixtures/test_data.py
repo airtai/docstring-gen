@@ -67,3 +67,4 @@ def add_counter_suffix_to_filename(src_path: Path):
     )
     dst_path = parent_dir / f"{src_path.stem}.{counter_suffix}{src_path.suffix}"
     os.rename(src_path, dst_path)
+    
