@@ -2,8 +2,7 @@
 site_name: docstring-gen
 site_url: https://airtai.github.io/docstring-gen
 site_author: airt
-site_description: This project generates missing docstrings for classes and methods
-  using OpenAI's Codex model.
+site_description: Generate docstrings using OpenAI's Codex model.
 
 # Repository
 repo_name: docstring-gen
