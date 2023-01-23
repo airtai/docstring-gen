@@ -551,7 +551,7 @@ def _add_docstring_to_nb(
                 if not file_modified:
                     file_modified = original_src != updated_src
                 cell["source"] = updated_src
-            except Exception as e:
+            except SyntaxError as e:
                 typer.secho(
                     f"WARNING: Unable to parse the below cell contents in {file} due to: {e}. Skipping the cell for docstring generation.",
                     fg=typer.colors.YELLOW,
@@ -609,7 +609,7 @@ def _add_docstring_to_py(
                 f"Successfully added docstrings to {file}", fg=typer.colors.CYAN
             )
 
-    except Exception as e:
+    except SyntaxError as e:
         typer.secho(
             f"WARNING: Unable to parse the {file} due to: {e}. Skipping the file for docstring generation.",
             fg=typer.colors.YELLOW,
