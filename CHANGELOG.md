@@ -2,6 +2,11 @@
 
 <!-- do not remove -->
 
+## 0.2.1
+
+- documenentation polishing
+
+
 ## 0.2.0
 
 ### New Features
