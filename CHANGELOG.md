@@ -4,7 +4,7 @@
 
 ## 0.2.1
 
-- documenentation polishing
+- Documentation polishing
 
 
 ## 0.2.0

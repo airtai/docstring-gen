@@ -190,7 +190,7 @@ After successful installation, you will see a new button on your jupyter
 notebook toolbar. This button allows you to easily generate docstrings
 for your Python code and improve your documentation.
 
-![](./images/docstring-gen-extension-btn.png)
+![](https://raw.githubusercontent.com/airtai/docstring-gen/main/nbs/images/docstring-gen-extension-btn.png)
 
 For more detailed information, please refer to this
 <a href="https://github.com/airtai/jupyter-docstring-gen" target="_blank">link</a>.
