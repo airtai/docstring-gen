@@ -5,10 +5,18 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
-  static_check:
+  mypy_static_analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: airtai/workflows/nbdev-mkdocs-static-check@main
+      - uses: airtai/workflows/airt-mypy-check@main
+  bandit_static_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: airtai/workflows/airt-bandit-check@main
+  semgrep_static_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: airtai/workflows/airt-semgrep-check@main
   test:
     strategy:
       fail-fast: false
