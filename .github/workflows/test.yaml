@@ -8,15 +8,15 @@ jobs:
   mypy_static_analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: airtai/workflows/airt-mypy-check@split-static-check
+      - uses: airtai/workflows/airt-mypy-check@main
   bandit_static_analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: airtai/workflows/airt-bandit-check@split-static-check
+      - uses: airtai/workflows/airt-bandit-check@main
   semgrep_static_analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: airtai/workflows/airt-semgrep-check@split-static-check
+      - uses: airtai/workflows/airt-semgrep-check@main
   test:
     strategy:
       fail-fast: false
