@@ -31,7 +31,7 @@ def _visit_functions(
         [ast.AST, str, int, int, NamedArg(List[Tuple[int, int, int, int]], "retval")],
         Any,
     ],
-    **kwargs: Any
+    **kwargs: Any,
 ) -> None:
     """Walk the abstract syntax tree and call the callback function for every node found
 
@@ -66,7 +66,7 @@ def _visit_functions(
                 start_lineno=node_start_lineno,
                 end_lineno=node_end_lineno,
                 callback=callback,
-                **kwargs
+                **kwargs,
             )
 
 # %% ../nbs/Docstring_Generator.ipynb 8
@@ -438,7 +438,7 @@ def _check_and_add_docstrings_to_source(
     source: str,
     include_auto_gen_txt: bool,
     recreate_auto_gen_docs: bool,
-    **kwargs: Union[int, float, str, List[str]]
+    **kwargs: Union[int, float, str, List[str]],
 ) -> str:
     """Check and add docstrings to classes and functions that don't have one.
 
