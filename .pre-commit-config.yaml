@@ -28,4 +28,3 @@ repos:
   hooks:
     - id: detect-secrets
       args: ['--baseline', '.secrets.baseline']
-
