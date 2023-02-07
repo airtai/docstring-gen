@@ -59,7 +59,6 @@ def gen(
         help="The number of docstrings to be generated for each function or class, with the best one being added to the source code. Please note that a higher number will deplete your token quota faster.",
     ),
 ) -> None:
-
     try:
         add_docstring_to_source(
             path=path,
