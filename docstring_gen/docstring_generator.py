@@ -304,7 +304,9 @@ DOCSTRING_ERR = """!!! note
 
 
 def _generate_docstring_using_chat_gpt(
-    code: str, message_template: str, **kwargs: Union[int, float, str, List[str]]
+    code: str,
+    message_template: List[Dict[str, str]],
+    **kwargs: Union[int, float, str, List[str]]
 ) -> str:
     """Generate a docstring using chat GPT model.
 
