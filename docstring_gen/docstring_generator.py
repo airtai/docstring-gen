@@ -221,7 +221,15 @@ def _completions_with_backoff(*args, **kwargs):
 # %% ../nbs/Docstring_Generator.ipynb 13
 SYSTEM_INSTRUCTION = {
     "role": "system",
-    "content": "Write a comprehensive Google-styled docstring, including a brief one-line summary for the code given by the user.",
+    "content": """You are an assistant designed read Python code and write comprehensive Google styled docstrings for Python Classes and functions. Users will paste python code and you will respond with a high quality comprehensive docstring using the following procedure:
+
+(1) First, classify whether the given code is a Python Class or a Function
+(2) Second, for python Classes, you must format your docstring in the below format. Never ever break this rule and do not add additional information
+\"""One line summary of class here.
+
+Atttibutes:
+\"""
+(3) Third, for python functions, you must format your docstring as per the Google Python Style Guide.""",
 }
 
 # %% ../nbs/Docstring_Generator.ipynb 14
@@ -271,6 +279,33 @@ Attributes:
     name : first name of the person
     surname : family name of the person
     age : age of the person
+""",
+    },
+    {
+        "role": "user",
+        "content": """
+class Animal:
+    def __init__(self, name, sound, num_legs=4):
+        self.name = name
+        self.sound = sound
+        self.num_legs = num_legs
+
+    def says(self, sound=None):
+        if self.sound is None and sound is None:
+            raise NotImplementedError("Silent Animals are not supported!")
+
+        out_sound = self.sound if sound is None else sound
+        print(self.says_str.format(name=self.name, sound=out_sound))
+""",
+    },
+    {
+        "role": "assistant",
+        "content": """A class to represent an animal.
+
+Attributes:
+    name : name of the animal
+    sound : sound made by the animal
+    num_legs : number of legs the animal has
 """,
     },
 ]
@@ -655,7 +690,7 @@ def add_docstring_to_source(
     files = _get_files(path) if path.is_dir() else [path]
     frequency_penalty = 0.0
     presence_penalty = 0.0
-    stop = ["#", '"""']
+    stop = ['"""']
 
     for file in files:
         if file.suffix == ".ipynb":
