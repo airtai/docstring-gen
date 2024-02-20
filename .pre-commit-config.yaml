@@ -17,11 +17,12 @@ repos:
   - id: bandit
 
 - repo: https://github.com/returntocorp/semgrep
-  rev: "v1.14.0"
+  rev: "v1.61.1"
   hooks:
     - id: semgrep
       name: Semgrep 
-      args: ["--config", "auto", "--error", "--exclude-rule", "python.sqlalchemy.security.audit.avoid-sqlalchemy-text.avoid-sqlalchemy-text"]
+      args: ["--config", "auto", "--error"]
+
 - repo: https://github.com/Yelp/detect-secrets
   rev: v1.4.0
   hooks:
