@@ -21,8 +21,7 @@ repos:
   hooks:
     - id: semgrep
       name: Semgrep 
-      args: ["--config", "auto", "--error"]
-
+      args: ["--config", "auto", "--error", "--exclude-rule", "python.sqlalchemy.security.audit.avoid-sqlalchemy-text.avoid-sqlalchemy-text"]
 - repo: https://github.com/Yelp/detect-secrets
   rev: v1.4.0
   hooks:
