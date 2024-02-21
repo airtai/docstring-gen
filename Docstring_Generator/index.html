@@ -1,0 +1,1894 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Generate docstrings using OpenAI's Codex model.">
+      
+      
+        <meta name="author" content="airt">
+      
+      
+        <link rel="canonical" href="https://airtai.github.io/docstring-gen/Docstring_Generator/">
+      
+      
+      
+      <link rel="icon" href="../overrides/images/airt_icon_blue.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Docstring Generator - docstring-gen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../overrides/css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-5ZGK0GBDJQ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-5ZGK0GBDJQ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-5ZGK0GBDJQ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  
+  
+    
+  
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="docstring-gen - Docstring Generator" />
+  <meta property="og:description" content="Generate docstrings using OpenAI's Codex model." />
+  <meta property="og:url" content="https://airtai.github.io/docstring-gen/Docstring_Generator/" />
+  <meta property="og:image" content="https://airtai.github.io/docstring-gen/Docstring_Generator/overrides/images/social_image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="docstring-gen - Docstring Generator" />
+  <meta name="twitter:description" content="Generate docstrings using OpenAI's Codex model." />
+  <meta name="twitter:image" content="https://airtai.github.io/docstring-gen/Docstring_Generator/overrides/images/social_image.png" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docstring-generator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="docstring-gen" class="md-header__button md-logo" aria-label="docstring-gen" data-md-component="logo">
+      
+  <img src="../overrides/images/airt_icon_blue.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            docstring-gen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docstring Generator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/airtai/docstring-gen" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    docstring-gen
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="docstring-gen" class="md-nav__button md-logo" aria-label="docstring-gen" data-md-component="logo">
+      
+  <img src="../overrides/images/airt_icon_blue.svg" alt="logo">
+
+    </a>
+    docstring-gen
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/airtai/docstring-gen" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    docstring-gen
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        docstring-gen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+          docstring_gen
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          docstring_gen
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+          docstring_generator
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          docstring_generator
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/docstring_gen/docstring_generator/add_docstring_to_source/" class="md-nav__link">
+        add_docstring_to_source
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/docstring_gen/" class="md-nav__link">
+        docstring_gen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        Releases
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#add_docstring_to_source" class="md-nav__link">
+    add_docstring_to_source
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="docstring-generator">Docstring Generator<a class="headerlink" href="#docstring-generator" title="Permanent link">¤</a></h1>
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">class Test:</span>
+<span class="s2">    CONST_VAL = 1</span>
+
+<span class="s2">    def __init__(self, a):</span>
+<span class="s2">        self.a = a</span>
+
+<span class="s2">    async def drive(self):</span>
+
+
+<span class="s2">        print(f&#39;The </span><span class="si">{self.model}</span><span class="s2"> is now driving.&#39;)</span>
+
+<span class="s2">    def func_with_docstring():</span>
+<span class="s2">        </span><span class="se">\&quot;</span><span class="s2">&quot;&quot; Sample docstring</span><span class="se">\&quot;</span><span class="s2">&quot;&quot;</span>
+<span class="s2">        pass</span>
+
+<span class="s2">def _check_and_add_docstrings_to_source(</span>
+<span class="s2">    source: str, include_auto_gen_txt: bool, **kwargs</span>
+<span class="s2">) -&gt; str:</span>
+<span class="s2">    source = _remove_auto_generated_docstring(source)    </span>
+<span class="s2">    tree = ast.parse(source)</span>
+<span class="s2">    line_offset = 0</span>
+
+<span class="s2">    for node in tree.body:</span>
+<span class="s2">        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):</span>
+<span class="s2">            continue</span>
+
+<span class="s2">        if ast.get_docstring(node) is not None:</span>
+<span class="s2">            continue</span>
+
+<span class="s2">        source, line_offset = _add_docstring(</span>
+<span class="s2">            source, node, line_offset, include_auto_gen_txt, **kwargs</span>
+<span class="s2">        )</span>
+<span class="s2">        if not isinstance(node, ast.ClassDef):</span>
+<span class="s2">            continue</span>
+<span class="s2">        # Is a class and we need to check the functions inside</span>
+<span class="s2">        # 29 - 36 make it as a recursive function</span>
+<span class="s2">        for f in node.body:</span>
+<span class="s2">            if not isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):</span>
+<span class="s2">                continue</span>
+
+<span class="s2">            if ast.get_docstring(f) is not None:</span>
+<span class="s2">                continue</span>
+
+<span class="s2">            # should be a function inside the class for which there is no docstring</span>
+<span class="s2">            source, line_offset = _add_docstring(</span>
+<span class="s2">                source, f, line_offset, include_auto_gen_txt, **kwargs</span>
+<span class="s2">            )</span>
+
+<span class="s2">    return source</span>
+
+<span class="s2">def test_callback(tree, source, start_lineno, end_lineno):</span>
+<span class="s2">    </span><span class="se">\&quot;</span><span class="s2">&quot;&quot;Prints the source code of the given node</span>
+
+<span class="s2">    Args:</span>
+<span class="s2">        tree: The AST tree</span>
+<span class="s2">        source: The source code</span>
+<span class="s2">        start_lineno: The start line number</span>
+<span class="s2">        end_lineno: The end line number</span>
+<span class="s2">    </span><span class="se">\&quot;</span><span class="s2">&quot;&quot;</span>
+
+<span class="s2">    pass</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">test_callback</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">_visit_functions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">test_callback</span><span class="p">)</span>
+
+<span class="n">actual</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">start_lineno</span><span class="p">,</span> <span class="n">end_lineno</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">tree</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">start_lineno</span><span class="p">,</span> <span class="n">end_lineno</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">test_callback</span><span class="o">.</span><span class="n">mock_calls</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">51</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span><span class="p">,</span> <span class="n">actual</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[(2, 16), (5, 7), (8, 12), (17, 51)]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">source_with_dosctring</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">class Test:</span>
+<span class="s1">    &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;</span>
+<span class="s1">    CONST_VAL = 1</span>
+
+<span class="s1">    def __init__(self, a):</span>
+<span class="s1">        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;</span>
+<span class="s1">        self.a = a</span>
+
+<span class="s1">    async def drive(self):</span>
+<span class="s1">        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;</span>
+<span class="s1">        print(f&#39;The </span><span class="si">{self.model}</span><span class="s1"> is now driving.&#39;)</span>
+
+<span class="s1">    def func_with_docstring():</span>
+<span class="s1">        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;</span>
+<span class="s1">        pass</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">test_callback</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">source_with_dosctring</span><span class="p">)</span>
+
+<span class="n">_visit_functions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source_with_dosctring</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">test_callback</span><span class="p">)</span>
+
+<span class="n">actual</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">start_lineno</span><span class="p">,</span> <span class="n">end_lineno</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">tree</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">start_lineno</span><span class="p">,</span> <span class="n">end_lineno</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">test_callback</span><span class="o">.</span><span class="n">mock_calls</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span><span class="p">,</span> <span class="n">actual</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_callback</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">start_lineno</span><span class="p">,</span> <span class="n">end_lineno</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints the source code of the given node</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree: The AST tree</span>
+<span class="sd">        source: The source code</span>
+<span class="sd">        start_lineno: The start line number</span>
+<span class="sd">        end_lineno: The end line number</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">source_lines</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">node_lines</span> <span class="o">=</span> <span class="n">source_lines</span><span class="p">[</span><span class="n">start_lineno</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">end_lineno</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">120</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">node_lines</span><span class="p">))</span>
+
+
+<span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">_visit_functions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">test_callback</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>************************************************************************************************************************
+class Test:
+    CONST_VAL = 1
+
+    def __init__(self, a):
+        self.a = a
+
+    async def drive(self):
+
+
+        print(f&#39;The {self.model} is now driving.&#39;)
+
+    def func_with_docstring():
+        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;
+        pass
+
+************************************************************************************************************************
+    def __init__(self, a):
+        self.a = a
+
+************************************************************************************************************************
+    async def drive(self):
+
+
+        print(f&#39;The {self.model} is now driving.&#39;)
+
+************************************************************************************************************************
+def _check_and_add_docstrings_to_source(
+    source: str, include_auto_gen_txt: bool, **kwargs
+) -&gt; str:
+    source = _remove_auto_generated_docstring(source)    
+    tree = ast.parse(source)
+    line_offset = 0
+
+    for node in tree.body:
+        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+
+        if ast.get_docstring(node) is not None:
+            continue
+
+        source, line_offset = _add_docstring(
+            source, node, line_offset, include_auto_gen_txt, **kwargs
+        )
+        if not isinstance(node, ast.ClassDef):
+            continue
+        # Is a class and we need to check the functions inside
+        # 29 - 36 make it as a recursive function
+        for f in node.body:
+            if not isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+
+            if ast.get_docstring(f) is not None:
+                continue
+
+            # should be a function inside the class for which there is no docstring
+            source, line_offset = _add_docstring(
+                source, f, line_offset, include_auto_gen_txt, **kwargs
+            )
+
+    return source
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">actual</span> <span class="o">=</span> <span class="n">_get_classes_and_functions</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[(2, 2, 16, 4), (5, 5, 7, 8), (8, 10, 12, 8), (17, 19, 51, 4)]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">linenos</span> <span class="o">=</span> <span class="n">_get_classes_and_functions</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">linenos</span><span class="p">)</span>
+<span class="n">actual</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">_get_code_from_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">start_line_no</span><span class="p">,</span> <span class="n">end_line_no</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start_line_no</span><span class="p">,</span> <span class="n">docstring_line_no</span><span class="p">,</span> <span class="n">end_line_no</span><span class="p">,</span> <span class="n">node_offset</span> <span class="ow">in</span> <span class="n">linenos</span>
+<span class="p">]</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;class Test:</span><span class="se">\n</span><span class="s1">    CONST_VAL = 1</span><span class="se">\n</span><span class="s1">    </span><span class="se">\n</span><span class="s1">    def __init__(self, a):</span><span class="se">\n</span><span class="s1">        self.a = a</span><span class="se">\n</span><span class="s1">        </span><span class="se">\n</span><span class="s1">    async def drive(self):</span><span class="se">\n</span><span class="s1">    </span><span class="se">\n</span><span class="s1">    </span><span class="se">\n</span><span class="s1">        print(f</span><span class="se">\&#39;</span><span class="s1">The </span><span class="si">{self.model}</span><span class="s1"> is now driving.</span><span class="se">\&#39;</span><span class="s1">)</span><span class="se">\n</span><span class="s1">        </span><span class="se">\n</span><span class="s1">    def func_with_docstring():</span><span class="se">\n</span><span class="s1">        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;</span><span class="se">\n</span><span class="s1">        pass</span><span class="se">\n</span><span class="s1">        &#39;</span><span class="p">,</span>
+    <span class="s2">&quot;    def __init__(self, a):</span><span class="se">\n</span><span class="s2">        self.a = a</span><span class="se">\n</span><span class="s2">        &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;    async def drive(self):</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">        print(f&#39;The </span><span class="si">{self.model}</span><span class="s2"> is now driving.&#39;)</span><span class="se">\n</span><span class="s2">        &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;def _check_and_add_docstrings_to_source(</span><span class="se">\n</span><span class="s2">    source: str, include_auto_gen_txt: bool, **kwargs</span><span class="se">\n</span><span class="s2">) -&gt; str:</span><span class="se">\n</span><span class="s2">    source = _remove_auto_generated_docstring(source)    </span><span class="se">\n</span><span class="s2">    tree = ast.parse(source)</span><span class="se">\n</span><span class="s2">    line_offset = 0</span><span class="se">\n\n</span><span class="s2">    for node in tree.body:</span><span class="se">\n</span><span class="s2">        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n</span><span class="s2">        </span><span class="se">\n</span><span class="s2">        if ast.get_docstring(node) is not None:</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n\n</span><span class="s2">        source, line_offset = _add_docstring(</span><span class="se">\n</span><span class="s2">            source, node, line_offset, include_auto_gen_txt, **kwargs</span><span class="se">\n</span><span class="s2">        )</span><span class="se">\n</span><span class="s2">        if not isinstance(node, ast.ClassDef):</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n</span><span class="s2">        # Is a class and we need to check the functions inside</span><span class="se">\n</span><span class="s2">        # 29 - 36 make it as a recursive function</span><span class="se">\n</span><span class="s2">        for f in node.body:</span><span class="se">\n</span><span class="s2">            if not isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):</span><span class="se">\n</span><span class="s2">                continue</span><span class="se">\n</span><span class="s2">            </span><span class="se">\n</span><span class="s2">            if ast.get_docstring(f) is not None:</span><span class="se">\n</span><span class="s2">                continue</span><span class="se">\n\n</span><span class="s2">            # should be a function inside the class for which there is no docstring</span><span class="se">\n</span><span class="s2">            source, line_offset = _add_docstring(</span><span class="se">\n</span><span class="s2">                source, f, line_offset, include_auto_gen_txt, **kwargs</span><span class="se">\n</span><span class="s2">            )</span><span class="se">\n\n</span><span class="s2">    return source</span><span class="se">\n</span><span class="s2">    &quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">actual</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[(2, 2, 16, 4), (5, 5, 7, 8), (8, 10, 12, 8), (17, 19, 51, 4)]
+****************************************************************************************************
+class Test:
+    CONST_VAL = 1
+
+    def __init__(self, a):
+        self.a = a
+
+    async def drive(self):
+
+
+        print(f&#39;The {self.model} is now driving.&#39;)
+
+    def func_with_docstring():
+        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;
+        pass
+
+****************************************************************************************************
+    def __init__(self, a):
+        self.a = a
+
+****************************************************************************************************
+    async def drive(self):
+
+
+        print(f&#39;The {self.model} is now driving.&#39;)
+
+****************************************************************************************************
+def _check_and_add_docstrings_to_source(
+    source: str, include_auto_gen_txt: bool, **kwargs
+) -&gt; str:
+    source = _remove_auto_generated_docstring(source)    
+    tree = ast.parse(source)
+    line_offset = 0
+
+    for node in tree.body:
+        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+
+        if ast.get_docstring(node) is not None:
+            continue
+
+        source, line_offset = _add_docstring(
+            source, node, line_offset, include_auto_gen_txt, **kwargs
+        )
+        if not isinstance(node, ast.ClassDef):
+            continue
+        # Is a class and we need to check the functions inside
+        # 29 - 36 make it as a recursive function
+        for f in node.body:
+            if not isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+
+            if ast.get_docstring(f) is not None:
+                continue
+
+            # should be a function inside the class for which there is no docstring
+            source, line_offset = _add_docstring(
+                source, f, line_offset, include_auto_gen_txt, **kwargs
+            )
+
+    return source
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">DEFAULT_MESSAGE_TEMPLATE</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">DEFAULT_MESSAGE_TEMPLATE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">SYSTEM_INSTRUCTION</span>
+<span class="k">assert</span> <span class="n">DEFAULT_MESSAGE_TEMPLATE</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">FEW_SHOT_EXAMPLES</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[{&#39;role&#39;: &#39;system&#39;, &#39;content&#39;: &#39;You are an assistant designed read Python code and write comprehensive Google styled docstrings for Python Classes and functions. Users will paste python code and you will respond with a high quality comprehensive docstring using the following procedure:\n\n(1) First, classify whether the given code is a Python Class or a Function\n(2) Second, for python Classes, you must format your docstring in the below format. Never ever break this rule and do not add additional information\n&quot;&quot;&quot;One line summary of class here.\n\nAtttibutes:\n&quot;&quot;&quot;\n(3) Third, for python functions, you must format your docstring as per the Google Python Style Guide.&#39;}, {&#39;role&#39;: &#39;user&#39;, &#39;content&#39;: &#39;\ndef add_strings(s1: Optional[str] = None, s2: Optional[str] = None) -&gt; str:\n    if s1 is None or s2 is None:\n        raise ValueError(Both s1 and s2 must be provided and must be of type string&quot;)\n    return s1 + s2\n        &#39;}, {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;Add two strings\n\nArgs:\n    s1: First string\n    s2: Second string\n    \nReturns:\n    The added string\n    \nRaises:\n    ValueError: If s1 or s2 is None\n&#39;}, {&#39;role&#39;: &#39;user&#39;, &#39;content&#39;: &#39;\nclass Person:\n    def __init__(self, name, surname, age):\n        self.name = name\n        self.surname = surname\n        self.age = age\n\n    def info(self, additional=&quot;&quot;):\n        print(\&#39;My name is :\&#39; + self.name + additional)\n&#39;}, {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;A class to represent a person.\n\nAttributes:\n    name : first name of the person\n    surname : family name of the person\n    age : age of the person\n&#39;}, {&#39;role&#39;: &#39;user&#39;, &#39;content&#39;: &#39;\nclass Animal:\n    def __init__(self, name, sound, num_legs=4):\n        self.name = name\n        self.sound = sound\n        self.num_legs = num_legs\n\n    def says(self, sound=None):\n        if self.sound is None and sound is None:\n            raise NotImplementedError(&quot;Silent Animals are not supported!&quot;)\n\n        out_sound = self.sound if sound is None else sound\n        print(self.says_str.format(name=self.name, sound=out_sound))\n&#39;}, {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;A class to represent an animal.\n\nAttributes:\n    name : name of the animal\n    sound : sound made by the animal\n    num_legs : number of legs the animal has\n&#39;}]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;class Room:</span>
+<span class="s2">    length = 0.0</span>
+<span class="s2">    breadth = 0.0</span>
+
+<span class="s2">    def calculate_area(self):</span>
+<span class="s2">        print(&quot;Area of Room =&quot;, self.length * self.breadth)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="n">messages</span> <span class="o">=</span> <span class="n">DEFAULT_MESSAGE_TEMPLATE</span> <span class="o">+</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">code</span><span class="p">}]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">_completions_with_backoff</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>A class to represent a room.
+
+Attributes:
+    length : length of the room
+    breadth : breadth of the room
+
+Methods:
+    calculate_area : calculates the area of the room and prints it.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">mock_openai_create</span><span class="p">():</span>
+    <span class="n">mock_choices</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;choices&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;Drive a car</span>
+
+<span class="s2">Args:</span>
+<span class="s2">    name: The name of the car</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">with</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;openai.ChatCompletion&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock</span><span class="p">:</span>
+        <span class="n">mock</span><span class="o">.</span><span class="n">create</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_choices</span>
+        <span class="k">yield</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">mock_openai_create</span><span class="p">():</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Drive a car
+
+Args:
+    name: The name of the car
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@_retry_with_exponential_backoff</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">mock_func</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Success&quot;</span>
+
+
+<span class="k">assert</span> <span class="n">mock_func</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Success&quot;</span>
+
+
+<span class="c1"># Test max retries exceeded</span>
+<span class="nd">@_retry_with_exponential_backoff</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">mock_func_error</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="n">openai</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">RateLimitError</span>
+
+
+<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">mock_func_error</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Maximum number of retries (1) exceeded.&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Note: OpenAI&#39;s API rate limit reached. Command will automatically retry in 3 seconds. For more information visit: https://help.openai.com/en/articles/5955598-is-api-usage-subject-to-any-rate-limits
+Maximum number of retries (1) exceeded.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">docstrings</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;    _check_and_add_docstrings_to_source(</span><span class="se">\n</span><span class="s2">    source: str, include_auto_gen_txt: bool, **kwargs</span><span class="se">\n</span><span class="s2">) -&gt; str:</span><span class="se">\n</span><span class="s2">    source = _remove_auto_generated_docstring(source)    </span><span class="se">\n</span><span class="s2">    tree = ast.parse(source)</span><span class="se">\n</span><span class="s2">    line_offset = 0</span><span class="se">\n\n</span><span class="s2">    for node in tree.body:</span><span class="se">\n</span><span class="s2">        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n</span><span class="s2">        </span><span class="se">\n</span><span class="s2">        if ast.get_docstring(node) is not None:</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n\n</span><span class="s2">        source, line_offset = _add_docstring(</span><span class="se">\n</span><span class="s2">            source, node, line_offset, include_auto_gen_txt, **kwargs</span><span class="se">\n</span><span class="s2">        )</span><span class="se">\n</span><span class="s2">        if not isinstance(node, ast.ClassDef):</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n</span><span class="s2">        &quot;</span><span class="p">,</span>
+    <span class="s1">&#39;    _check_and_add_docstrings_to_source</span><span class="se">\n</span><span class="s1">    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="se">\n</span><span class="s1">    This function checks if the source code has docstrings for all the functions and classes.</span><span class="se">\n</span><span class="s1">    If not, it adds a docstring to the function/class.</span><span class="se">\n\n</span><span class="s1">    Args:</span><span class="se">\n</span><span class="s1">        source (str): The source code to be checked for docstrings.</span><span class="se">\n</span><span class="s1">        include_auto_gen_txt (bool): If True, the docstring will include the text &quot;Auto-generated by nbdev&quot;.</span><span class="se">\n</span><span class="s1">        **kwargs: Additional keyword arguments.</span><span class="se">\n\n</span><span class="s1">    Returns:</span><span class="se">\n</span><span class="s1">        str: The source code with docstrings added.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;    This function checks if the source code has docstrings for all the functions and classes.</span><span class="se">\n</span><span class="s2">    If not, it adds the docstrings.</span><span class="se">\n</span><span class="s2">    It also removes the auto generated docstring.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    Args:</span><span class="se">\n</span><span class="s2">        source: The source code as a string.</span><span class="se">\n</span><span class="s2">        include_auto_gen_txt: Whether to include the auto generated text in the docstring.</span><span class="se">\n</span><span class="s2">        **kwargs: Other keyword arguments.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    Returns:</span><span class="se">\n</span><span class="s2">        The source code with docstrings added.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    Raises:</span><span class="se">\n</span><span class="s2">        ValueError: If the source code is not a string.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">actual</span> <span class="o">=</span> <span class="n">_get_best_docstring</span><span class="p">(</span><span class="n">docstrings</span><span class="p">)</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="n">docstrings</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>    This function checks if the source code has docstrings for all the functions and classes.
+    If not, it adds the docstrings.
+    It also removes the auto generated docstring.
+
+    Args:
+        source: The source code as a string.
+        include_auto_gen_txt: Whether to include the auto generated text in the docstring.
+        **kwargs: Other keyword arguments.
+
+    Returns:
+        The source code with docstrings added.
+
+    Raises:
+        ValueError: If the source code is not a string.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">docstrings</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;    _check_and_add_docstrings_to_source(</span><span class="se">\n</span><span class="s2">    source: str, include_auto_gen_txt: bool, **kwargs</span><span class="se">\n</span><span class="s2">) -&gt; str:</span><span class="se">\n</span><span class="s2">    source = _remove_auto_generated_docstring(source)    </span><span class="se">\n</span><span class="s2">    tree = ast.parse(source)</span><span class="se">\n</span><span class="s2">    line_offset = 0</span><span class="se">\n\n</span><span class="s2">    for node in tree.body:</span><span class="se">\n</span><span class="s2">        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n</span><span class="s2">        </span><span class="se">\n</span><span class="s2">        if ast.get_docstring(node) is not None:</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n\n</span><span class="s2">        source, line_offset = _add_docstring(</span><span class="se">\n</span><span class="s2">            source, node, line_offset, include_auto_gen_txt, **kwargs</span><span class="se">\n</span><span class="s2">        )</span><span class="se">\n</span><span class="s2">        if not isinstance(node, ast.ClassDef):</span><span class="se">\n</span><span class="s2">            continue</span><span class="se">\n</span><span class="s2">        &quot;</span><span class="p">,</span>
+    <span class="s1">&#39;    _check_and_add_docstrings_to_source</span><span class="se">\n</span><span class="s1">    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="se">\n</span><span class="s1">    This function checks if the source code has docstrings for all the functions and classes.</span><span class="se">\n</span><span class="s1">    If not, it adds a docstring to the function/class.</span><span class="se">\n\n</span><span class="s1">    Args:</span><span class="se">\n</span><span class="s1">        source (str): The source code to be checked for docstrings.</span><span class="se">\n</span><span class="s1">        include_auto_gen_txt (bool): If True, the docstring will include the text &quot;Auto-generated by nbdev&quot;.</span><span class="se">\n</span><span class="s1">        **kwargs: Additional keyword arguments.</span><span class="se">\n\n</span><span class="s1">    Returns:</span><span class="se">\n</span><span class="s1">        str: The source code with docstrings added.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;    This function checks if the source code ~~~~~~~~~~~~~~~~ has docstrings for all the functions and classes.</span><span class="se">\n</span><span class="s2">    If not, it adds the docstrings.</span><span class="se">\n</span><span class="s2">    It also removes the auto generated docstring.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    Args:</span><span class="se">\n</span><span class="s2">        source: The source code as a string.</span><span class="se">\n</span><span class="s2">        include_auto_gen_txt: Whether to include the auto generated text in the docstring.</span><span class="se">\n</span><span class="s2">        **kwargs: Other keyword arguments.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    Returns:</span><span class="se">\n</span><span class="s2">        The source code with docstrings added.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">    Raises:</span><span class="se">\n</span><span class="s2">        ValueError: If the source code is not a string.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">actual</span> <span class="o">=</span> <span class="n">_get_best_docstring</span><span class="p">(</span><span class="n">docstrings</span><span class="p">)</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>None
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">linenos</span> <span class="o">=</span> <span class="n">_get_classes_and_functions</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="n">classes_and_functions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">_get_code_from_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">start_line_no</span><span class="p">,</span> <span class="n">end_line_no</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start_line_no</span><span class="p">,</span> <span class="n">docstring_line_no</span><span class="p">,</span> <span class="n">end_line_no</span><span class="p">,</span> <span class="n">node_offset</span> <span class="ow">in</span> <span class="n">linenos</span>
+<span class="p">]</span>
+<span class="k">with</span> <span class="n">mock_openai_create</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">classes_and_functions</span><span class="p">:</span>
+        <span class="n">docstring</span> <span class="o">=</span> <span class="n">_generate_docstring_using_chat_gpt</span><span class="p">(</span>
+            <span class="n">code</span><span class="p">,</span>
+            <span class="n">DEFAULT_MESSAGE_TEMPLATE</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">],</span>
+            <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">docstring</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Drive a car
+
+Args:
+    name: The name of the car
+
+Drive a car
+
+Args:
+    name: The name of the car
+
+Drive a car
+
+Args:
+    name: The name of the car
+
+Drive a car
+
+Args:
+    name: The name of the car
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">AUTO_GEN_TXT</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>!!! note
+
+    The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">docstring</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Sample docstring</span>
+
+<span class="s2">Args:</span>
+<span class="s2">    s: sample args</span>
+
+<span class="s2">Returns:</span>
+<span class="s2">    sample return</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="n">docstring</span> <span class="o">+</span> <span class="n">AUTO_GEN_TXT</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="n">actual</span> <span class="o">=</span> <span class="n">_add_auto_gen_txt</span><span class="p">(</span><span class="n">docstring</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Sample docstring
+
+Args:
+    s: sample args
+
+Returns:
+    sample return
+
+!!! note
+
+    The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">docstring</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Sample docstring</span>
+
+<span class="s2">    Args:</span>
+<span class="s2">        s: sample args</span>
+
+<span class="s2">    Returns:</span>
+<span class="s2">        sample return</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">expected_false</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&quot;&quot;&quot;Sample docstring</span>
+
+<span class="s1">Args:</span>
+<span class="s1">    s: sample args</span>
+
+<span class="s1">Returns:</span>
+<span class="s1">    sample return</span>
+<span class="s1">&quot;&quot;&quot;&#39;&#39;&#39;</span>
+<span class="n">expected_true</span> <span class="o">=</span> <span class="p">(</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;&quot;&quot;&quot;Sample docstring</span>
+
+<span class="sd">Args:</span>
+<span class="sd">    s: sample args</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    sample return</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="o">+</span> <span class="n">AUTO_GEN_TXT</span>
+    <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&quot;&quot;&quot;&#39;</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col_offset</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">include_auto_gen_txt</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="p">[</span><span class="n">expected_false</span><span class="p">,</span> <span class="n">expected_true</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">col_offset</span><span class="p">)</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">_fix_docstring_indent</span><span class="p">(</span>
+            <span class="n">docstring</span><span class="p">,</span> <span class="n">col_offset</span><span class="p">,</span> <span class="n">include_auto_gen_txt</span><span class="o">=</span><span class="n">include_auto_gen_txt</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&quot;&quot;&quot;Sample docstring
+
+Args:
+    s: sample args
+
+Returns:
+    sample return
+&quot;&quot;&quot;
+&quot;&quot;&quot;Sample docstring
+
+Args:
+    s: sample args
+
+Returns:
+    sample return
+
+!!! note
+
+    The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+&quot;&quot;&quot;
+    &quot;&quot;&quot;Sample docstring
+
+    Args:
+        s: sample args
+
+    Returns:
+        sample return
+    &quot;&quot;&quot;
+    &quot;&quot;&quot;Sample docstring
+
+    Args:
+        s: sample args
+
+    Returns:
+        sample return
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+        &quot;&quot;&quot;Sample docstring
+
+        Args:
+            s: sample args
+
+        Returns:
+            sample return
+        &quot;&quot;&quot;
+        &quot;&quot;&quot;Sample docstring
+
+        Args:
+            s: sample args
+
+        Returns:
+            sample return
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">linenos</span> <span class="o">=</span> <span class="n">_get_classes_and_functions</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="n">classes_and_functions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">_get_code_from_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">start_line_no</span><span class="p">,</span> <span class="n">end_line_no</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start_line_no</span><span class="p">,</span> <span class="n">docstring_line_no</span><span class="p">,</span> <span class="n">end_line_no</span><span class="p">,</span> <span class="n">node_offset</span> <span class="ow">in</span> <span class="n">linenos</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes_and_functions</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>4
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">line_offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="n">mock_openai_create</span><span class="p">():</span>
+    <span class="n">docstrings</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">_generate_docstring_using_chat_gpt</span><span class="p">(</span>
+            <span class="n">i</span><span class="p">,</span>
+            <span class="n">DEFAULT_MESSAGE_TEMPLATE</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">],</span>
+            <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">classes_and_functions</span>
+    <span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">docstrings</span><span class="p">)</span>
+
+<span class="n">source_lines</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">node_offset</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">node_offset</span> <span class="ow">in</span> <span class="n">linenos</span><span class="p">]</span>
+
+<span class="n">indented_docstrings</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">_fix_docstring_indent</span><span class="p">(</span><span class="n">docstring</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">include_auto_gen_txt</span><span class="o">=</span><span class="n">include_auto_gen_txt</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">docstring</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">docstrings</span><span class="p">,</span> <span class="n">offsets</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indented_docstrings</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;Drive a car\n\nArgs:\n    name: The name of the car\n    &#39;, &#39;Drive a car\n\nArgs:\n    name: The name of the car\n    &#39;, &#39;Drive a car\n\nArgs:\n    name: The name of the car\n    &#39;, &#39;Drive a car\n\nArgs:\n    name: The name of the car\n    &#39;]
+****************************************************************************************************
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+****************************************************************************************************
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+****************************************************************************************************
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+****************************************************************************************************
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">actual</span> <span class="o">=</span> <span class="n">_inject_docstring_to_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">indented_docstrings</span><span class="p">,</span> <span class="n">linenos</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+
+<span class="n">docstring</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Drive a car</span>
+
+<span class="s2">    Args:</span>
+<span class="s2">        name: The name of the car</span>
+
+<span class="s2">    !!! note</span>
+
+<span class="s2">        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">assert</span> <span class="n">docstring</span> <span class="ow">in</span> <span class="n">actual</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>class Test:
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    CONST_VAL = 1
+
+    def __init__(self, a):
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        self.a = a
+
+    async def drive(self):
+
+
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        print(f&#39;The {self.model} is now driving.&#39;)
+
+    def func_with_docstring():
+        &quot;&quot;&quot; Sample docstring&quot;&quot;&quot;
+        pass
+
+def _check_and_add_docstrings_to_source(
+    source: str, include_auto_gen_txt: bool, **kwargs
+) -&gt; str:
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    source = _remove_auto_generated_docstring(source)    
+    tree = ast.parse(source)
+    line_offset = 0
+
+    for node in tree.body:
+        if not isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+
+        if ast.get_docstring(node) is not None:
+            continue
+
+        source, line_offset = _add_docstring(
+            source, node, line_offset, include_auto_gen_txt, **kwargs
+        )
+        if not isinstance(node, ast.ClassDef):
+            continue
+        # Is a class and we need to check the functions inside
+        # 29 - 36 make it as a recursive function
+        for f in node.body:
+            if not isinstance(f, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+
+            if ast.get_docstring(f) is not None:
+                continue
+
+            # should be a function inside the class for which there is no docstring
+            source, line_offset = _add_docstring(
+                source, f, line_offset, include_auto_gen_txt, **kwargs
+            )
+
+    return source
+
+def test_callback(tree, source, start_lineno, end_lineno):
+    &quot;&quot;&quot;Prints the source code of the given node
+
+    Args:
+        tree: The AST tree
+        source: The source code
+        start_lineno: The start line number
+        end_lineno: The end line number
+    &quot;&quot;&quot;
+
+    pass
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">_source</span> <span class="o">=</span> <span class="p">(</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">def decorator1(func):</span>
+<span class="sd">    &quot;&quot;&quot;Decorator function that takes a function as an argument and returns a function.&quot;&quot;&quot;</span>
+<span class="sd">    pass</span>
+
+<span class="sd">def decorator2(func):</span>
+<span class="sd">    &quot;&quot;&quot;Sample docstring</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        arg 1: arg 1 description</span>
+<span class="sd">        arg 2: arg 2 description</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="o">+</span> <span class="n">AUTO_GEN_TXT</span>
+    <span class="o">+</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    &quot;&quot;&quot;</span>
+<span class="s1">    pass</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="p">)</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">def decorator1(func):</span>
+<span class="s1">    &quot;&quot;&quot;Decorator function that takes a function as an argument and returns a function.&quot;&quot;&quot;</span>
+<span class="s1">    pass</span>
+
+<span class="s1">def decorator2(func):</span>
+<span class="s1">    pass</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">actual</span> <span class="o">=</span> <span class="n">_remove_auto_generated_docstring</span><span class="p">(</span><span class="n">_source</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>def decorator1(func):
+    &quot;&quot;&quot;Decorator function that takes a function as an argument and returns a function.&quot;&quot;&quot;
+    pass
+
+def decorator2(func):
+    pass
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">nl</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">_source</span> <span class="o">=</span> <span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">class Test:</span>
+<span class="sd">    CONST_VAL = 1</span>
+
+<span class="sd">    def __init__(self, a):</span>
+<span class="sd">        self.a = a</span>
+
+<span class="sd">def test_callback(tree, source, start_lineno, end_lineno):</span>
+<span class="sd">    \&quot;&quot;&quot;</span><span class="n">Check</span> <span class="ow">and</span> <span class="n">add</span> <span class="n">docstrings</span> <span class="n">to</span> <span class="n">source</span>
+
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">source</span><span class="p">:</span> <span class="n">Source</span> <span class="n">code</span>
+        <span class="n">include_auto_gen_txt</span><span class="p">:</span> <span class="n">Include</span> <span class="n">auto</span> <span class="n">gen</span> <span class="n">text</span>
+        <span class="n">recreate_auto_gen_docs</span><span class="p">:</span> <span class="n">If</span> <span class="nb">set</span> <span class="n">to</span> <span class="kc">True</span><span class="p">,</span> <span class="n">the</span> <span class="n">autogenerated</span> <span class="n">docstrings</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">previous</span> <span class="n">runs</span> <span class="n">will</span> <span class="n">be</span> <span class="n">replaced</span> <span class="k">with</span> <span class="n">the</span> <span class="n">new</span> <span class="n">one</span><span class="o">.</span>
+        <span class="n">kwargs</span><span class="p">:</span> <span class="n">Keyword</span> <span class="n">arguments</span>
+
+    <span class="n">Returns</span><span class="p">:</span>
+        <span class="n">The</span> <span class="n">source</span> <span class="n">code</span> <span class="k">with</span> <span class="n">docstrings</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    + f&#39;{nl.join([textwrap.indent(l, &quot; &quot;*4) for l in AUTO_GEN_TXT.split(nl)])}&#39;</span>
+<span class="sd">    + &quot;&quot;&quot;</span>
+    \<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    pass</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="n">mock_openai_create</span><span class="p">():</span>
+    <span class="n">updated_source</span> <span class="o">=</span> <span class="n">_check_and_add_docstrings_to_source</span><span class="p">(</span>
+        <span class="n">_source</span><span class="p">,</span>
+        <span class="n">include_auto_gen_txt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">recreate_auto_gen_docs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">updated_source</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="s2">&quot;Check and add docstrings to source&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">updated_source</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">updated_source</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>class Test:
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    CONST_VAL = 1
+
+    def __init__(self, a):
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        self.a = a
+
+def test_callback(tree, source, start_lineno, end_lineno):
+
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    pass
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">mock_openai_create</span><span class="p">():</span>
+    <span class="n">updated_source</span> <span class="o">=</span> <span class="n">_check_and_add_docstrings_to_source</span><span class="p">(</span>
+        <span class="n">_source</span><span class="p">,</span>
+        <span class="n">include_auto_gen_txt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">recreate_auto_gen_docs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">updated_source</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="s2">&quot;Check and add docstrings to source&quot;</span> <span class="ow">in</span> <span class="n">updated_source</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">updated_source</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>class Test:
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    CONST_VAL = 1
+
+    def __init__(self, a):
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        self.a = a
+
+def test_callback(tree, source, start_lineno, end_lineno):
+    &quot;&quot;&quot;Check and add docstrings to source
+
+    Args:
+        source: Source code
+        include_auto_gen_txt: Include auto gen text
+        recreate_auto_gen_docs: If set to True, the autogenerated docstrings from the previous runs will be replaced with the new one.
+        kwargs: Keyword arguments
+
+    Returns:
+        The source code with docstrings
+
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+
+    pass
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">nbs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;nbs&quot;</span>
+    <span class="n">nbs_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">hidden_dir</span> <span class="o">=</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;.hidden&quot;</span>
+    <span class="n">hidden_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;settings.ini&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;settings.ini&quot;</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;_test.ipynb&quot;</span>
+    <span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test.ipynb&quot;</span>
+    <span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test_1.ipynb&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">hidden_dir</span> <span class="o">/</span> <span class="s2">&quot;test.ipynb&quot;</span>
+    <span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">hidden_dir</span> <span class="o">/</span> <span class="s2">&quot;test_1.ipynb&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">nbs_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="n">files</span> <span class="o">=</span> <span class="n">_get_files</span><span class="p">(</span><span class="n">nbs_path</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="si">{</span><span class="n">files</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test_1.ipynb&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test.ipynb&quot;</span><span class="p">]),</span> <span class="n">files</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/.hidden
+/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/test_1.ipynb
+/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/settings.ini
+/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/test.ipynb
+/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/_test.ipynb
+/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/.hidden/test_1.ipynb
+/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/.hidden/test.ipynb
+
+
+[PosixPath(&#39;/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/test_1.ipynb&#39;), PosixPath(&#39;/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmps_19y7i1/nbs/test.ipynb&#39;)]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+        <span class="n">nbs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;nbs&quot;</span>
+        <span class="n">nbs_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">_get_files</span><span class="p">(</span><span class="n">nbs_path</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>The directory /private/var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmp8t12t08s/nbs does not contain any Python files or notebooks
+</code></pre></div>
+<hr />
+<p><a
+href="https://github.com/airtai/docstring-gen/blob/main/docstring_gen/docstring_generator.py#L660"
+target="_blank" style="float:right; font-size:smaller">source</a></p>
+<h3 id="add_docstring_to_source">add_docstring_to_source<a class="headerlink" href="#add_docstring_to_source" title="Permanent link">¤</a></h3>
+<blockquote>
+<div class="highlight"><pre><span></span><code> add_docstring_to_source (path:Union[str,pathlib.Path],
+                          include_auto_gen_txt:bool=True,
+                          recreate_auto_gen_docs:bool=False,
+                          model:str=&#39;gpt-3.5-turbo&#39;,
+                          temperature:float=0.2, max_tokens:int=250,
+                          top_p:float=1.0, n:int=3)
+</code></pre></div>
+</blockquote>
+<p>Reads a Jupyter notebook or Python file, or a directory containing these
+files, and adds docstrings to classes and methods that do not have them.</p>
+<p>Args: path: The path to the Jupyter notebook or Python file, or a
+directory containing these files. include_auto_gen_txt: If set to True,
+a note indicating that the docstring was autogenerated by docstring-gen
+library will be added to the end. recreate_auto_gen_docs: If set to
+True, the autogenerated docstrings from the previous runs will be
+replaced with the new one. model: The name of the Codex model that will
+be used to generate docstrings. temperature: Setting the temperature
+close to zero produces better results, whereas higher temperatures
+produce more complex, and sometimes irrelevant docstrings. max_tokens:
+The maximum number of tokens to be used when generating a docstring for
+a function or class. Please note that a higher number will deplete your
+token quota faster. top_p: You can also specify a top-P value from 0-1
+to achieve similar results to changing the temperature. According to the
+Open AI documentation, it is generally recommended to change either this
+or the temperature but not both. n: The number of docstrings to be
+generated for each function or class, with the best one being added to
+the source code. Please note that a higher number will deplete your
+token quota faster.</p>
+<p>Returns: None</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above docstring is autogenerated by docstring-gen library (<a href="https://docstring-gen.airt.ai">https://docstring-gen.airt.ai</a>)</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">nbs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;nbs&quot;</span>
+    <span class="n">nbs_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test.ipynb&quot;</span>
+    <span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;Test_Data.ipynb&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;_test.ipynb&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;test_data.py&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test_data.py&quot;</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;fixtures&quot;</span> <span class="o">/</span> <span class="s2">&quot;invalid_test_data.py&quot;</span><span class="p">,</span>
+        <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;invalid_test_data.py&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;settings.ini&quot;</span><span class="p">,</span> <span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;settings.ini&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">mock_openai_create</span><span class="p">():</span>
+        <span class="n">add_docstring_to_source</span><span class="p">(</span><span class="n">nbs_path</span><span class="p">,</span> <span class="n">recreate_auto_gen_docs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="p">(</span><span class="n">nbs_path</span> <span class="o">/</span> <span class="s2">&quot;test.ipynb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">nb</span><span class="o">.</span><span class="n">cells</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">cell_type</span> <span class="o">==</span> <span class="s2">&quot;code&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cell</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>WARNING: Unable to parse the /var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmpxlv2_fom/nbs/invalid_test_data.py due to: invalid syntax (&lt;unknown&gt;, line 4). Skipping the file for docstring generation.
+Successfully added docstrings to /var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmpxlv2_fom/nbs/test_data.py
+WARNING: Unable to parse the below cell contents in /var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmpxlv2_fom/nbs/test.ipynb due to: invalid syntax (&lt;unknown&gt;, line 2). Skipping the cell for docstring generation.
+with TemporaryDirectory() as d:
+    !ls -la {d}
+Successfully added docstrings to /var/folders/6n/3rjds7v52cd83wqkd565db0h0000gn/T/tmpxlv2_fom/nbs/test.ipynb
+# | export
+
+from typing import *
+import os
+from pathlib import Path
+# from contextlib import contextmanager
+
+from contextlib import contextmanager
+
+import shutil
+from tempfile import TemporaryDirectory
+
+_source = &#39;&#39;&#39;
+def decorator1(func):
+    &quot;&quot;&quot;Decorator function that takes a function as an argument and returns a function.&quot;&quot;&quot;
+    pass
+
+def decorator2(func):
+    pass
+&#39;&#39;&#39;
+
+with TemporaryDirectory() as d:
+    !ls -la {d}
+# | export
+
+# Vehicle class
+class Vehicle:
+    # Constructor function
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    def __init__(self, brand, model, type):
+        &quot;&quot;&quot;Constructor function
+
+        Args:
+            brand: Vehicle&#39;s brand
+            model: Vehicle&#39;s model
+            type: Vehicle&#39;s type
+        &quot;&quot;&quot;
+        self.brand = brand
+        self.model = model
+        self.type = type
+        self.gas_tank_size = 14
+        self.fuel_level = 0
+
+    # fuel_up function
+    def fuel_up(self):
+        # comment goes here
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        self.fuel_level = self.gas_tank_size
+        return &#39;Gas tank is now full.&#39;
+
+    # drive function
+    async def drive(self):
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        print(f&#39;The {self.model} is now driving.&#39;)
+v = Vehicle(&quot;honda&quot;, &quot;city&quot;, &quot;hatchback&quot;)
+actual = v.fuel_up()
+
+print(actual)
+assert actual == &#39;Gas tank is now full.&#39;
+def say_hello(name: str) -&gt; str:
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    return f&quot;Hello, {name}&quot;
+
+async def function_with_docstring(name: str) -&gt; str:
+    &quot;&quot;&quot; This function already has docstring&quot;&quot;&quot;
+    return f&quot;I won&#39;t say hello, {name}&quot;
+
+async def dont_say_hello(name: str) -&gt; str:
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    return f&quot;I won&#39;t say hello, {name}&quot;
+
+def decorator1(func):
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    def inner():
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        func()
+    return inner
+
+def decorator2(func):
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    def inner():
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        func()
+    return inner
+
+@decorator1
+@decorator2
+def outer_func():
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    def inner_func():
+        &quot;&quot;&quot;Drive a car
+
+        Args:
+            name: The name of the car
+
+        !!! note
+
+            The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+        &quot;&quot;&quot;
+        print(&quot;Hello, World!&quot;)
+    inner_func()
+@contextmanager
+def my_context_mgr():
+    &quot;&quot;&quot;Drive a car
+
+    Args:
+        name: The name of the car
+
+    !!! note
+
+        The above docstring is autogenerated by docstring-gen library (https://docstring-gen.airt.ai)
+    &quot;&quot;&quot;
+    try:
+        yield
+    finally:
+        pass
+</code></pre></div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2023 onwards airt technologies ltd.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+    and 
+    <a href="https://nbdev-mkdocs.airt.ai/" target="_blank" rel="noopener">
+      Material for nbdev
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+        <script src="../overrides/js/extra.js"></script>
+      
+        <script src="../overrides/js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
