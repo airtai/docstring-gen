@@ -2,6 +2,22 @@
 
 <!-- do not remove -->
 
+## 0.4.0
+
+
+
+
+## 0.4.0
+
+### New Features
+
+- Support for Python 3.7 has been removed.
+
+### Bugs Squashed
+
+- AttributeError: module 'openai' has no attribute 'error ([#212](https://github.com/airtai/nbdev-mkdocs/issues/212))
+
+
 ## 0.3.0
 
 ### New Features
